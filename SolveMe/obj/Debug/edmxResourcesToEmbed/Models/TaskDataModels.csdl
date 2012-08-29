@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TaskEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Model.Category" />
+    <EntitySet Name="Sloves" EntityType="Model.Slove" />
+    <EntitySet Name="Tasks" EntityType="Model.Task" />
+    <AssociationSet Name="fk_TaskSlove" Association="Model.fk_TaskSlove">
+      <End Role="Tasks" EntitySet="Tasks" />
+      <End Role="Sloves" EntitySet="Sloves" />
+    </AssociationSet>
+    <AssociationSet Name="TaskCategory" Association="Model.TaskCategory">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Tasks" EntitySet="Tasks" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Tasks" Relationship="Model.TaskCategory" FromRole="Categories" ToRole="Tasks" />
+  </EntityType>
+  <EntityType Name="Slove">
+    <Key>
+      <PropertyRef Name="SloveId" />
+    </Key>
+    <Property Name="SloveId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Value" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="TaskId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Task" Relationship="Model.fk_TaskSlove" FromRole="Sloves" ToRole="Tasks" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="TaskId" />
+    </Key>
+    <Property Name="TaskId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Text" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Author" Type="Int32" Nullable="false" />
+    <Property Name="Added" Type="DateTime" Precision="3" />
+    <Property Name="FirstSlove" Type="DateTime" Precision="3" />
+    <Property Name="SlovesCount" Type="Int32" />
+    <Property Name="Attempts" Type="Int32" />
+    <NavigationProperty Name="Sloves" Relationship="Model.fk_TaskSlove" FromRole="Tasks" ToRole="Sloves" />
+    <NavigationProperty Name="Categories" Relationship="Model.TaskCategory" FromRole="Tasks" ToRole="Categories" />
+  </EntityType>
+  <Association Name="fk_TaskSlove">
+    <End Role="Tasks" Type="Model.Task" Multiplicity="1" />
+    <End Role="Sloves" Type="Model.Slove" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tasks">
+        <PropertyRef Name="TaskId" />
+      </Principal>
+      <Dependent Role="Sloves">
+        <PropertyRef Name="TaskId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TaskCategory">
+    <End Role="Categories" Type="Model.Category" Multiplicity="*" />
+    <End Role="Tasks" Type="Model.Task" Multiplicity="*" />
+  </Association>
+</Schema>

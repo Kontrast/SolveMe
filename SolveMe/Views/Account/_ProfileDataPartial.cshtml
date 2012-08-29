@@ -1,0 +1,31 @@
+﻿@model SolveMe.Models.UserProfile
+
+@using (Html.BeginForm("Profile", "Account")) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Your profile</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.FirstName)
+                @Html.TextBoxFor(m => m.FirstName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.LastName)
+                @Html.TextBoxFor(m => m.LastName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.DateOfBirth)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Sex)
+                @Html.Label("male")
+                @Html.RadioButton("male", true)
+                @Html.Label("fimale")
+                @Html.RadioButton("male", true)
+            </li>
+        </ol>
+        <input type="submit" value="Save" />
+    </fieldset>
+}

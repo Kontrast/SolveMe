@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="SloveMeDataConnection" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Model.Category" />
+    <EntitySet Name="Sloves" EntityType="Model.Slove" />
+    <EntitySet Name="Tasks" EntityType="Model.Task" />
+    <EntitySet Name="UserProfiles" EntityType="Model.UserProfile" />
+    <EntitySet Name="webpages_Membership" EntityType="Model.webpages_Membership" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="Model.webpages_OAuthMembership" />
+    <EntitySet Name="webpages_Roles" EntityType="Model.webpages_Roles" />
+    <AssociationSet Name="fk_TaskSlove" Association="Model.fk_TaskSlove">
+      <End Role="Tasks" EntitySet="Tasks" />
+      <End Role="Sloves" EntitySet="Sloves" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Authots" Association="Model.fk_Authots">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="Tasks" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="TaskCategory" Association="Model.TaskCategory">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Tasks" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="webpages_UsersInRoles" Association="Model.webpages_UsersInRoles">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Tasks" Relationship="Model.TaskCategory" FromRole="Categories" ToRole="Tasks" />
+  </EntityType>
+  <EntityType Name="Slove">
+    <Key>
+      <PropertyRef Name="SloveId" />
+    </Key>
+    <Property Name="SloveId" Type="Int32" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="TaskId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Task" Relationship="Model.fk_TaskSlove" FromRole="Sloves" ToRole="Tasks" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="TaskId" />
+    </Key>
+    <Property Name="TaskId" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Text" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Author" Type="Int32" Nullable="false" />
+    <Property Name="Added" Type="DateTime" Precision="3" />
+    <Property Name="FirstSlove" Type="DateTime" Precision="3" />
+    <Property Name="SlovesCount" Type="Int32" />
+    <Property Name="Attempts" Type="Int32" />
+    <NavigationProperty Name="Sloves" Relationship="Model.fk_TaskSlove" FromRole="Tasks" ToRole="Sloves" />
+    <NavigationProperty Name="UserProfile" Relationship="Model.fk_Authots" FromRole="Tasks" ToRole="UserProfile" />
+    <NavigationProperty Name="Categories" Relationship="Model.TaskCategory" FromRole="Tasks" ToRole="Categories" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+    <Property Name="Sex" Type="Boolean" />
+    <NavigationProperty Name="Tasks" Relationship="Model.fk_Authots" FromRole="UserProfile" ToRole="Tasks" />
+    <NavigationProperty Name="webpages_Roles" Relationship="Model.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ConfirmationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="IsConfirmed" Type="Boolean" />
+    <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="UserProfiles" Relationship="Model.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+  </EntityType>
+  <Association Name="fk_TaskSlove">
+    <End Role="Tasks" Type="Model.Task" Multiplicity="1" />
+    <End Role="Sloves" Type="Model.Slove" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tasks">
+        <PropertyRef Name="TaskId" />
+      </Principal>
+      <Dependent Role="Sloves">
+        <PropertyRef Name="TaskId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Authots">
+    <End Role="UserProfile" Type="Model.UserProfile" Multiplicity="1" />
+    <End Role="Tasks" Type="Model.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Tasks">
+        <PropertyRef Name="Author" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TaskCategory">
+    <End Role="Categories" Type="Model.Category" Multiplicity="*" />
+    <End Role="Tasks" Type="Model.Task" Multiplicity="*" />
+  </Association>
+  <Association Name="webpages_UsersInRoles">
+    <End Role="webpages_Roles" Type="Model.webpages_Roles" Multiplicity="*" />
+    <End Role="UserProfile" Type="Model.UserProfile" Multiplicity="*" />
+  </Association>
+</Schema>

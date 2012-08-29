@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="TaskEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="Model.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sloves">
+      <EntityTypeMapping TypeName="Model.Slove">
+        <MappingFragment StoreEntitySet="Sloves">
+          <ScalarProperty Name="SloveId" ColumnName="SloveId" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tasks">
+      <EntityTypeMapping TypeName="Model.Task">
+        <MappingFragment StoreEntitySet="Tasks">
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Added" ColumnName="Added" />
+          <ScalarProperty Name="FirstSlove" ColumnName="FirstSlove" />
+          <ScalarProperty Name="SlovesCount" ColumnName="SlovesCount" />
+          <ScalarProperty Name="Attempts" ColumnName="Attempts" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="TaskCategory" TypeName="Model.TaskCategory" StoreEntitySet="TaskCategory">
+      <EndProperty Name="Categories">
+        <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+      </EndProperty>
+      <EndProperty Name="Tasks">
+        <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

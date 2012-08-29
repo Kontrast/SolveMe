@@ -1,0 +1,88 @@
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\SloveMe.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\SloveMe.pdb
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\Antlr3.Runtime.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\DotNetOpenAuth.Core.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\EntityFramework.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\Newtonsoft.Json.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Net.Http.Formatting.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Web.Helpers.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Web.Http.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Web.Http.WebHost.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Web.Mvc.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Web.Optimization.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Web.Razor.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Web.WebPages.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Web.WebPages.Razor.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\WebGrease.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\WebMatrix.Data.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\WebMatrix.WebData.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\EntityFramework.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\Newtonsoft.Json.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Net.Http.Formatting.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Web.Helpers.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Web.Http.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Web.Http.WebHost.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Web.Mvc.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Web.Razor.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Web.WebPages.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\System.Web.WebPages.Razor.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\WebMatrix.Data.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\WebMatrix.WebData.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\DotNetOpenAuth.Core.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\obj\Debug\SloveMe.csprojResolveAssemblyReference.cache
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\obj\Debug\SloveMe.dll
+C:\Users\Костя\Documents\Visual Studio 2008\Projects\SloveMe\SloveMe\obj\Debug\SloveMe.pdb
+C:\SloveMe\SloveMe\bin\SloveMe.dll
+C:\SloveMe\SloveMe\bin\SloveMe.pdb
+C:\SloveMe\SloveMe\bin\Microsoft.Web.Infrastructure.dll
+C:\SloveMe\SloveMe\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\SloveMe\SloveMe\bin\System.Net.Http.Formatting.dll
+C:\SloveMe\SloveMe\bin\System.Web.Helpers.dll
+C:\SloveMe\SloveMe\bin\System.Web.Http.dll
+C:\SloveMe\SloveMe\bin\System.Web.Http.WebHost.dll
+C:\SloveMe\SloveMe\bin\System.Web.Mvc.dll
+C:\SloveMe\SloveMe\bin\System.Web.Razor.dll
+C:\SloveMe\SloveMe\bin\System.Web.WebPages.Deployment.dll
+C:\SloveMe\SloveMe\bin\System.Web.WebPages.dll
+C:\SloveMe\SloveMe\bin\System.Web.WebPages.Razor.dll
+C:\SloveMe\SloveMe\bin\WebMatrix.Data.dll
+C:\SloveMe\SloveMe\bin\WebMatrix.WebData.dll
+C:\SloveMe\SloveMe\bin\EntityFramework.xml
+C:\SloveMe\SloveMe\bin\Microsoft.Web.Infrastructure.xml
+C:\SloveMe\SloveMe\bin\Newtonsoft.Json.xml
+C:\SloveMe\SloveMe\bin\System.Net.Http.Formatting.xml
+C:\SloveMe\SloveMe\bin\System.Web.Helpers.xml
+C:\SloveMe\SloveMe\bin\System.Web.Http.xml
+C:\SloveMe\SloveMe\bin\System.Web.Http.WebHost.xml
+C:\SloveMe\SloveMe\bin\System.Web.Mvc.xml
+C:\SloveMe\SloveMe\bin\System.Web.Razor.xml
+C:\SloveMe\SloveMe\bin\System.Web.WebPages.xml
+C:\SloveMe\SloveMe\bin\System.Web.WebPages.Deployment.xml
+C:\SloveMe\SloveMe\bin\System.Web.WebPages.Razor.xml
+C:\SloveMe\SloveMe\bin\WebMatrix.Data.xml
+C:\SloveMe\SloveMe\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\SloveMe\SloveMe\bin\WebMatrix.WebData.xml
+C:\SloveMe\SloveMe\bin\DotNetOpenAuth.AspNet.xml
+C:\SloveMe\SloveMe\bin\DotNetOpenAuth.Core.xml
+C:\SloveMe\SloveMe\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\SloveMe\SloveMe\bin\DotNetOpenAuth.OAuth.xml
+C:\SloveMe\SloveMe\bin\DotNetOpenAuth.OpenId.xml
+C:\SloveMe\SloveMe\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\SloveMe\SloveMe\obj\Debug\SloveMe.csprojResolveAssemblyReference.cache
+C:\SloveMe\SloveMe\obj\Debug\SloveMe.dll
+C:\SloveMe\SloveMe\obj\Debug\SloveMe.pdb
