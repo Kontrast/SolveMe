@@ -1,10 +1,26 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
-
+﻿@model SolveMe.Models.ErrorPageModel
 @{
-    ViewBag.Title = "Error";
+    ViewBag.Title = Model.Title;
 }
-
-<hgroup class="title">
-    <h1 class="error">Error.</h1>
-    <h2 class="error">An error occurred while processing your request.</h2>
-</hgroup>
+@if (!String.IsNullOrWhiteSpace(Model.Title))
+{
+    <h2>@Model.Title</h2>
+}
+@if (!String.IsNullOrWhiteSpace(Model.Message))
+{
+    <blockquote>@Model.Message</blockquote>
+}
+@if (!String.IsNullOrWhiteSpace(Model.Details))
+{
+    <p>@Model.Details</p>
+}
+<p>
+    @if (Model.ShowGotoMain)
+    {
+        @Html.ActionLink("Home", "Index", "Home")
+    }
+    @if (Model.ShowGotoBack)
+    {
+        <a href="javascript:history.go(-1)">Go back</a>
+    }
+</p>

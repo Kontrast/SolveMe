@@ -1,51 +1,68 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="ModelStoreContainer">
-    <EntitySet Name="Categories" EntityType="Model.Store.Categories" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Likes" EntityType="Model.Store.Likes" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Solution" EntityType="Model.Store.Solution" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Solve" EntityType="Model.Store.Solve" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TaskCategory" EntityType="Model.Store.TaskCategory" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Tasks" EntityType="Model.Store.Tasks" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="UserProfile" EntityType="Model.Store.UserProfile" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="webpages_Membership" EntityType="Model.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="webpages_OAuthMembership" EntityType="Model.Store.webpages_OAuthMembership" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="webpages_Roles" EntityType="Model.Store.webpages_Roles" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="webpages_UsersInRoles" EntityType="Model.Store.webpages_UsersInRoles" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="fk_Author" Association="Model.Store.fk_Author">
+<Schema Namespace="DataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DataModelStoreContainer">
+    <EntitySet Name="Categories" EntityType="DataModel.Store.Categories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Likes" EntityType="DataModel.Store.Likes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sex" EntityType="DataModel.Store.Sex" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Solutions" EntityType="DataModel.Store.Solutions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TaskCategory" EntityType="DataModel.Store.TaskCategory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tasks" EntityType="DataModel.Store.Tasks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserProfile" EntityType="DataModel.Store.UserProfile" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserTask" EntityType="DataModel.Store.UserTask" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_Membership" EntityType="DataModel.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="DataModel.Store.webpages_OAuthMembership" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_Roles" EntityType="DataModel.Store.webpages_Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_UsersInRoles" EntityType="DataModel.Store.webpages_UsersInRoles" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="fk_Author" Association="DataModel.Store.fk_Author">
       <End Role="UserProfile" EntitySet="UserProfile" />
       <End Role="Tasks" EntitySet="Tasks" />
     </AssociationSet>
-    <AssociationSet Name="fk_Category" Association="Model.Store.fk_Category">
+    <AssociationSet Name="fk_Category" Association="DataModel.Store.fk_Category">
       <End Role="Categories" EntitySet="Categories" />
       <End Role="TaskCategory" EntitySet="TaskCategory" />
     </AssociationSet>
-    <AssociationSet Name="FK_Like_Task" Association="Model.Store.FK_Like_Task">
+    <AssociationSet Name="FK_Like_Task" Association="DataModel.Store.FK_Like_Task">
       <End Role="Tasks" EntitySet="Tasks" />
       <End Role="Likes" EntitySet="Likes" />
     </AssociationSet>
-    <AssociationSet Name="FK_Like_User" Association="Model.Store.FK_Like_User">
+    <AssociationSet Name="FK_Like_User" Association="DataModel.Store.FK_Like_User">
       <End Role="UserProfile" EntitySet="UserProfile" />
       <End Role="Likes" EntitySet="Likes" />
     </AssociationSet>
-    <AssociationSet Name="fk_RoleId" Association="Model.Store.fk_RoleId">
+    <AssociationSet Name="fk_RoleId" Association="DataModel.Store.fk_RoleId">
       <End Role="webpages_Roles" EntitySet="webpages_Roles" />
       <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
     </AssociationSet>
-    <AssociationSet Name="fk_Task" Association="Model.Store.fk_Task">
+    <AssociationSet Name="FK_Solutions_Tasks" Association="DataModel.Store.FK_Solutions_Tasks">
+      <End Role="Tasks" EntitySet="Tasks" />
+      <End Role="Solutions" EntitySet="Solutions" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Task" Association="DataModel.Store.fk_Task">
       <End Role="Tasks" EntitySet="Tasks" />
       <End Role="TaskCategory" EntitySet="TaskCategory" />
     </AssociationSet>
-    <AssociationSet Name="fk_UserId" Association="Model.Store.fk_UserId">
+    <AssociationSet Name="fk_UserId" Association="DataModel.Store.fk_UserId">
       <End Role="UserProfile" EntitySet="UserProfile" />
       <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProfile_Sex" Association="DataModel.Store.FK_UserProfile_Sex">
+      <End Role="Sex" EntitySet="Sex" />
+      <End Role="UserProfile" EntitySet="UserProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserTask_Solutions" Association="DataModel.Store.FK_UserTask_Solutions">
+      <End Role="Tasks" EntitySet="Tasks" />
+      <End Role="UserTask" EntitySet="UserTask" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserTask_UserProfile" Association="DataModel.Store.FK_UserTask_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="UserTask" EntitySet="UserTask" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Categories">
     <Key>
       <PropertyRef Name="CategoryId" />
     </Key>
-    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Likes">
@@ -56,19 +73,18 @@
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="TaskId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Solution">
+  <EntityType Name="Sex">
+    <Key>
+      <PropertyRef Name="SexId" />
+    </Key>
+    <Property Name="SexId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Value" Type="nvarchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Solutions">
     <Key>
       <PropertyRef Name="SolutionId" />
     </Key>
-    <Property Name="SolutionId" Type="int" Nullable="false" />
-    <Property Name="Value" Type="nvarchar(max)" />
-    <Property Name="TaskId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Solve">
-    <Key>
-      <PropertyRef Name="SolveId" />
-    </Key>
-    <Property Name="SolveId" Type="int" Nullable="false" />
+    <Property Name="SolutionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Value" Type="nvarchar(max)" />
     <Property Name="TaskId" Type="int" Nullable="false" />
   </EntityType>
@@ -84,14 +100,14 @@
     <Key>
       <PropertyRef Name="TaskId" />
     </Key>
-    <Property Name="TaskId" Type="int" Nullable="false" />
+    <Property Name="TaskId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="nvarchar" MaxLength="500" />
-    <Property Name="Text" Type="nvarchar(max)" />
+    <Property Name="TaskText" Type="nvarchar(max)" />
     <Property Name="Author" Type="int" Nullable="false" />
     <Property Name="Added" Type="datetime" />
     <Property Name="FirstSolve" Type="datetime" />
-    <Property Name="SolutionsCount" Type="int" />
-    <Property Name="Attempts" Type="int" />
+    <Property Name="SolutionsCount" Type="int" Nullable="false" />
+    <Property Name="Attempts" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="UserProfile">
     <Key>
@@ -102,7 +118,18 @@
     <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
     <Property Name="LastName" Type="nvarchar" MaxLength="100" />
     <Property Name="DateOfBirth" Type="datetime" />
-    <Property Name="Sex" Type="bit" />
+    <Property Name="Gender" Type="int" />
+    <Property Name="Rating" Type="int" Nullable="false" />
+    <Property Name="TasksCount" Type="int" Nullable="false" />
+    <Property Name="SolutionsCount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserTask">
+    <Key>
+      <PropertyRef Name="TaskId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="TaskId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="webpages_Membership">
     <Key>
@@ -145,8 +172,8 @@
     <Property Name="RoleId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="fk_Author">
-    <End Role="UserProfile" Type="Model.Store.UserProfile" Multiplicity="1" />
-    <End Role="Tasks" Type="Model.Store.Tasks" Multiplicity="*" />
+    <End Role="UserProfile" Type="DataModel.Store.UserProfile" Multiplicity="1" />
+    <End Role="Tasks" Type="DataModel.Store.Tasks" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UserProfile">
         <PropertyRef Name="UserId" />
@@ -157,8 +184,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="fk_Category">
-    <End Role="Categories" Type="Model.Store.Categories" Multiplicity="1" />
-    <End Role="TaskCategory" Type="Model.Store.TaskCategory" Multiplicity="*" />
+    <End Role="Categories" Type="DataModel.Store.Categories" Multiplicity="1" />
+    <End Role="TaskCategory" Type="DataModel.Store.TaskCategory" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Categories">
         <PropertyRef Name="CategoryId" />
@@ -169,8 +196,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Like_Task">
-    <End Role="Tasks" Type="Model.Store.Tasks" Multiplicity="1" />
-    <End Role="Likes" Type="Model.Store.Likes" Multiplicity="*" />
+    <End Role="Tasks" Type="DataModel.Store.Tasks" Multiplicity="1" />
+    <End Role="Likes" Type="DataModel.Store.Likes" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Tasks">
         <PropertyRef Name="TaskId" />
@@ -181,8 +208,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Like_User">
-    <End Role="UserProfile" Type="Model.Store.UserProfile" Multiplicity="1" />
-    <End Role="Likes" Type="Model.Store.Likes" Multiplicity="*" />
+    <End Role="UserProfile" Type="DataModel.Store.UserProfile" Multiplicity="1" />
+    <End Role="Likes" Type="DataModel.Store.Likes" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UserProfile">
         <PropertyRef Name="UserId" />
@@ -193,8 +220,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="fk_RoleId">
-    <End Role="webpages_Roles" Type="Model.Store.webpages_Roles" Multiplicity="1" />
-    <End Role="webpages_UsersInRoles" Type="Model.Store.webpages_UsersInRoles" Multiplicity="*" />
+    <End Role="webpages_Roles" Type="DataModel.Store.webpages_Roles" Multiplicity="1" />
+    <End Role="webpages_UsersInRoles" Type="DataModel.Store.webpages_UsersInRoles" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="webpages_Roles">
         <PropertyRef Name="RoleId" />
@@ -204,9 +231,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Solutions_Tasks">
+    <End Role="Tasks" Type="DataModel.Store.Tasks" Multiplicity="1" />
+    <End Role="Solutions" Type="DataModel.Store.Solutions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tasks">
+        <PropertyRef Name="TaskId" />
+      </Principal>
+      <Dependent Role="Solutions">
+        <PropertyRef Name="TaskId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_Task">
-    <End Role="Tasks" Type="Model.Store.Tasks" Multiplicity="1" />
-    <End Role="TaskCategory" Type="Model.Store.TaskCategory" Multiplicity="*" />
+    <End Role="Tasks" Type="DataModel.Store.Tasks" Multiplicity="1" />
+    <End Role="TaskCategory" Type="DataModel.Store.TaskCategory" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Tasks">
         <PropertyRef Name="TaskId" />
@@ -217,13 +256,49 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="fk_UserId">
-    <End Role="UserProfile" Type="Model.Store.UserProfile" Multiplicity="1" />
-    <End Role="webpages_UsersInRoles" Type="Model.Store.webpages_UsersInRoles" Multiplicity="*" />
+    <End Role="UserProfile" Type="DataModel.Store.UserProfile" Multiplicity="1" />
+    <End Role="webpages_UsersInRoles" Type="DataModel.Store.webpages_UsersInRoles" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UserProfile">
         <PropertyRef Name="UserId" />
       </Principal>
       <Dependent Role="webpages_UsersInRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProfile_Sex">
+    <End Role="Sex" Type="DataModel.Store.Sex" Multiplicity="0..1" />
+    <End Role="UserProfile" Type="DataModel.Store.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sex">
+        <PropertyRef Name="SexId" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="Gender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserTask_Solutions">
+    <End Role="Tasks" Type="DataModel.Store.Tasks" Multiplicity="1" />
+    <End Role="UserTask" Type="DataModel.Store.UserTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tasks">
+        <PropertyRef Name="TaskId" />
+      </Principal>
+      <Dependent Role="UserTask">
+        <PropertyRef Name="TaskId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserTask_UserProfile">
+    <End Role="UserProfile" Type="DataModel.Store.UserProfile" Multiplicity="1" />
+    <End Role="UserTask" Type="DataModel.Store.UserTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserTask">
         <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>

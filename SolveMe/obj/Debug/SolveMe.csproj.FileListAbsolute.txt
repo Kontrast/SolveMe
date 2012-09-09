@@ -76,3 +76,12 @@ C:\SolveMe\SolveMe\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 C:\SolveMe\SolveMe\obj\Debug\SolveMe.csprojResolveAssemblyReference.cache
 C:\SolveMe\SolveMe\obj\Debug\SloveMe.dll
 C:\SolveMe\SolveMe\obj\Debug\SloveMe.pdb
+C:\SolveMe\SolveMe\bin\EventStore.dll
+C:\SolveMe\SolveMe\bin\EventStore.Serialization.Json.dll
+C:\SolveMe\SolveMe\bin\Newtonsoft.Json.dll
+C:\SolveMe\SolveMe\bin\EventStore.pdb
+C:\SolveMe\SolveMe\bin\EventStore.xml
+C:\SolveMe\SolveMe\bin\EventStore.Serialization.Json.pdb
+C:\SolveMe\SolveMe\bin\MvcHaack.Ajax.dll
+C:\SolveMe\SolveMe\bin\Calabonga.Mvc.PagedListExt.dll
+C:\SolveMe\SolveMe\bin\MvcPaging.dll

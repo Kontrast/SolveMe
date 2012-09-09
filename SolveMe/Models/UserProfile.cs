@@ -7,29 +7,35 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace SolveMe.Models
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class UserProfile
     {
         public UserProfile()
         {
-            this.Tasks = new HashSet<Tasks>();
-            this.Tasks1 = new HashSet<Tasks>();
+            this.Tasks = new HashSet<Task>();
+            this.Tasks1 = new HashSet<Task>();
+            this.Tasks2 = new HashSet<Task>();
             this.webpages_Roles = new HashSet<webpages_Roles>();
         }
-
+    
         public int UserId { get; set; }
         public string UserName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public Nullable<System.DateTime> DateOfBirth { get; set; }
+        public Nullable<int> Gender { get; set; }
+        public int Rating { get; set; }
+        public int TasksCount { get; set; }
+        public int SolutionsCount { get; set; }
     
-        public virtual ICollection<Tasks> Tasks { get; set; }
-        public virtual UserInfo UserInfo { get; set; }
-        public virtual ICollection<Tasks> Tasks1 { get; set; }
+        public virtual Sex Sex { get; set; }
+        public virtual ICollection<Task> Tasks { get; set; }
+        public virtual ICollection<Task> Tasks1 { get; set; }
+        public virtual ICollection<Task> Tasks2 { get; set; }
         public virtual ICollection<webpages_Roles> webpages_Roles { get; set; }
     }
 }

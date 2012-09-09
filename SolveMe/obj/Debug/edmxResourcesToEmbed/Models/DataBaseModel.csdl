@@ -1,70 +1,85 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="DataEntities" p1:LazyLoadingEnabled="true">
-    <EntitySet Name="Categories" EntityType="Model.Categories" />
-    <EntitySet Name="Solution" EntityType="Model.Solution" />
-    <EntitySet Name="Solve" EntityType="Model.Solve" />
-    <EntitySet Name="Tasks" EntityType="Model.Tasks" />
-    <EntitySet Name="UserProfile" EntityType="Model.UserProfile" />
-    <EntitySet Name="webpages_Membership" EntityType="Model.webpages_Membership" />
-    <EntitySet Name="webpages_OAuthMembership" EntityType="Model.webpages_OAuthMembership" />
-    <EntitySet Name="webpages_Roles" EntityType="Model.webpages_Roles" />
-    <AssociationSet Name="fk_Author" Association="Model.fk_Author">
-      <End Role="UserProfile" EntitySet="UserProfile" />
+<Schema Namespace="DataModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="DataModel.Category" />
+    <EntitySet Name="Sexes" EntityType="DataModel.Sex" />
+    <EntitySet Name="Solutions" EntityType="DataModel.Solution" />
+    <EntitySet Name="Tasks" EntityType="DataModel.Task" />
+    <EntitySet Name="UserProfiles" EntityType="DataModel.UserProfile" />
+    <EntitySet Name="webpages_Membership" EntityType="DataModel.webpages_Membership" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="DataModel.webpages_OAuthMembership" />
+    <EntitySet Name="webpages_Roles" EntityType="DataModel.webpages_Roles" />
+    <AssociationSet Name="FK_UserProfile_Sex" Association="DataModel.FK_UserProfile_Sex">
+      <End Role="Sex" EntitySet="Sexes" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solutions_Tasks" Association="DataModel.FK_Solutions_Tasks">
+      <End Role="Tasks" EntitySet="Tasks" />
+      <End Role="Solutions" EntitySet="Solutions" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Author" Association="DataModel.fk_Author">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
       <End Role="Tasks" EntitySet="Tasks" />
     </AssociationSet>
-    <AssociationSet Name="Likes" Association="Model.Likes">
+    <AssociationSet Name="Likes" Association="DataModel.Likes">
       <End Role="Tasks" EntitySet="Tasks" />
-      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
     </AssociationSet>
-    <AssociationSet Name="TaskCategory" Association="Model.TaskCategory">
+    <AssociationSet Name="TaskCategory" Association="DataModel.TaskCategory">
       <End Role="Categories" EntitySet="Categories" />
       <End Role="Tasks" EntitySet="Tasks" />
     </AssociationSet>
-    <AssociationSet Name="webpages_UsersInRoles" Association="Model.webpages_UsersInRoles">
+    <AssociationSet Name="UserTask" Association="DataModel.UserTask">
+      <End Role="Tasks" EntitySet="Tasks" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="webpages_UsersInRoles" Association="DataModel.webpages_UsersInRoles">
       <End Role="webpages_Roles" EntitySet="webpages_Roles" />
-      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
     </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Categories">
+  <EntityType Name="Category">
     <Key>
       <PropertyRef Name="CategoryId" />
     </Key>
-    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <NavigationProperty Name="Tasks" Relationship="Model.TaskCategory" FromRole="Categories" ToRole="Tasks" />
+    <NavigationProperty Name="Tasks" Relationship="DataModel.TaskCategory" FromRole="Categories" ToRole="Tasks" />
+  </EntityType>
+  <EntityType Name="Sex">
+    <Key>
+      <PropertyRef Name="SexId" />
+    </Key>
+    <Property Name="SexId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="UserProfiles" Relationship="DataModel.FK_UserProfile_Sex" FromRole="Sex" ToRole="UserProfile" />
   </EntityType>
   <EntityType Name="Solution">
     <Key>
       <PropertyRef Name="SolutionId" />
     </Key>
-    <Property Name="SolutionId" Type="Int32" Nullable="false" />
+    <Property Name="SolutionId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="Value" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="TaskId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Task" Relationship="DataModel.FK_Solutions_Tasks" FromRole="Solutions" ToRole="Tasks" />
   </EntityType>
-  <EntityType Name="Solve">
-    <Key>
-      <PropertyRef Name="SolveId" />
-    </Key>
-    <Property Name="SolveId" Type="Int32" Nullable="false" />
-    <Property Name="Value" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="TaskId" Type="Int32" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Tasks">
+  <EntityType Name="Task">
     <Key>
       <PropertyRef Name="TaskId" />
     </Key>
-    <Property Name="TaskId" Type="Int32" Nullable="false" />
+    <Property Name="TaskId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-    <Property Name="Text" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="TaskText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="Author" Type="Int32" Nullable="false" />
     <Property Name="Added" Type="DateTime" Precision="3" />
     <Property Name="FirstSolve" Type="DateTime" Precision="3" />
-    <Property Name="SolutionsCount" Type="Int32" />
-    <Property Name="Attempts" Type="Int32" />
-    <NavigationProperty Name="UserProfile" Relationship="Model.fk_Author" FromRole="Tasks" ToRole="UserProfile" />
-    <NavigationProperty Name="UserProfile1" Relationship="Model.Likes" FromRole="Tasks" ToRole="UserProfile" />
-    <NavigationProperty Name="Categories" Relationship="Model.TaskCategory" FromRole="Tasks" ToRole="Categories" />
+    <Property Name="SolutionsCount" Type="Int32" Nullable="false" />
+    <Property Name="Attempts" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Solutions" Relationship="DataModel.FK_Solutions_Tasks" FromRole="Tasks" ToRole="Solutions" />
+    <NavigationProperty Name="UserProfile" Relationship="DataModel.fk_Author" FromRole="Tasks" ToRole="UserProfile" />
+    <NavigationProperty Name="UserProfiles" Relationship="DataModel.Likes" FromRole="Tasks" ToRole="UserProfile" />
+    <NavigationProperty Name="Categories" Relationship="DataModel.TaskCategory" FromRole="Tasks" ToRole="Categories" />
+    <NavigationProperty Name="UserProfiles1" Relationship="DataModel.UserTask" FromRole="Tasks" ToRole="UserProfile" />
   </EntityType>
   <EntityType Name="UserProfile">
     <Key>
@@ -75,10 +90,15 @@
     <Property Name="FirstName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
     <Property Name="LastName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
     <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
-    <Property Name="Sex" Type="Boolean" />
-    <NavigationProperty Name="Tasks" Relationship="Model.fk_Author" FromRole="UserProfile" ToRole="Tasks" />
-    <NavigationProperty Name="Tasks1" Relationship="Model.Likes" FromRole="UserProfile" ToRole="Tasks" />
-    <NavigationProperty Name="webpages_Roles" Relationship="Model.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+    <Property Name="Gender" Type="Int32" />
+    <Property Name="Rating" Type="Int32" Nullable="false" />
+    <Property Name="TasksCount" Type="Int32" Nullable="false" />
+    <Property Name="SolutionsCount" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Sex" Relationship="DataModel.FK_UserProfile_Sex" FromRole="UserProfile" ToRole="Sex" />
+    <NavigationProperty Name="Tasks" Relationship="DataModel.fk_Author" FromRole="UserProfile" ToRole="Tasks" />
+    <NavigationProperty Name="Tasks1" Relationship="DataModel.Likes" FromRole="UserProfile" ToRole="Tasks" />
+    <NavigationProperty Name="Tasks2" Relationship="DataModel.UserTask" FromRole="UserProfile" ToRole="Tasks" />
+    <NavigationProperty Name="webpages_Roles" Relationship="DataModel.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
   </EntityType>
   <EntityType Name="webpages_Membership">
     <Key>
@@ -111,11 +131,35 @@
     </Key>
     <Property Name="RoleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
-    <NavigationProperty Name="UserProfile" Relationship="Model.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+    <NavigationProperty Name="UserProfiles" Relationship="DataModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
   </EntityType>
+  <Association Name="FK_UserProfile_Sex">
+    <End Role="Sex" Type="DataModel.Sex" Multiplicity="0..1" />
+    <End Role="UserProfile" Type="DataModel.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sex">
+        <PropertyRef Name="SexId" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="Gender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Solutions_Tasks">
+    <End Role="Tasks" Type="DataModel.Task" Multiplicity="1" />
+    <End Role="Solutions" Type="DataModel.Solution" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tasks">
+        <PropertyRef Name="TaskId" />
+      </Principal>
+      <Dependent Role="Solutions">
+        <PropertyRef Name="TaskId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_Author">
-    <End Role="UserProfile" Type="Model.UserProfile" Multiplicity="1" />
-    <End Role="Tasks" Type="Model.Tasks" Multiplicity="*" />
+    <End Role="UserProfile" Type="DataModel.UserProfile" Multiplicity="1" />
+    <End Role="Tasks" Type="DataModel.Task" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UserProfile">
         <PropertyRef Name="UserId" />
@@ -126,15 +170,19 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="Likes">
-    <End Role="Tasks" Type="Model.Tasks" Multiplicity="*" />
-    <End Role="UserProfile" Type="Model.UserProfile" Multiplicity="*" />
+    <End Role="Tasks" Type="DataModel.Task" Multiplicity="*" />
+    <End Role="UserProfile" Type="DataModel.UserProfile" Multiplicity="*" />
   </Association>
   <Association Name="TaskCategory">
-    <End Role="Categories" Type="Model.Categories" Multiplicity="*" />
-    <End Role="Tasks" Type="Model.Tasks" Multiplicity="*" />
+    <End Role="Categories" Type="DataModel.Category" Multiplicity="*" />
+    <End Role="Tasks" Type="DataModel.Task" Multiplicity="*" />
+  </Association>
+  <Association Name="UserTask">
+    <End Role="Tasks" Type="DataModel.Task" Multiplicity="*" />
+    <End Role="UserProfile" Type="DataModel.UserProfile" Multiplicity="*" />
   </Association>
   <Association Name="webpages_UsersInRoles">
-    <End Role="webpages_Roles" Type="Model.webpages_Roles" Multiplicity="*" />
-    <End Role="UserProfile" Type="Model.UserProfile" Multiplicity="*" />
+    <End Role="webpages_Roles" Type="DataModel.webpages_Roles" Multiplicity="*" />
+    <End Role="UserProfile" Type="DataModel.UserProfile" Multiplicity="*" />
   </Association>
 </Schema>

@@ -213,26 +213,6 @@ namespace SolveMe.Controllers
         }
 
 
-
-        //
-        // GET: /Account/Profile
-
-        public ActionResult Profile()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Account/Manage
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Profile(UserProfile model)
-        {
-            
-            return View(model);
-        }
-
         //
         // POST: /Account/ExternalLogin
 
@@ -296,7 +276,7 @@ namespace SolveMe.Controllers
             if (ModelState.IsValid)
             {
                 // Insert a new user into the database
-                using (UsersContext db = new UsersContext())
+                using (Entities db = new Entities())
                 {
                     UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
                     // Check if user already exists

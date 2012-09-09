@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using DotNetOpenAuth.AspNet.Clients;
-using System.Collections.Generic;
 using System.Net;
 using System.Collections.Specialized;
 using System.Web.Helpers;

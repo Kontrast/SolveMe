@@ -5,29 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Globalization;
 using System.Web.Security;
+
 using SolveMe.Models;
 
 namespace SolveMe.Models
 {
-    public class UsersContext : DbContext
-    {
-        public UsersContext()
-            : base("Entities")
-        {
-        }
-
-        public DbSet<UserProfile> UserProfiles { get; set; }
-    }
-
-    /*[Table("UserProfile")]
-    public class UserProfile
-    {
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int UserId { get; set; }
-        public string UserName { get; set; }
-    }*/
-
     public class RegisterExternalLoginModel
     {
         [Required]

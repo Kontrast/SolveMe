@@ -2,9 +2,22 @@
     ViewBag.Title = "Home";
 }
 @section featured {
+    <link rel="stylesheet" type="text/css" href="~/Content/JqCloud/JqCloud.css">
     <section class="featured">
         <div class="content-wrapper">
-            <h1 class="pull-left">@ViewBag.Title</h1>
+            <div id="tagsCloud" class="jqcloud tag-clowd">
+            </div>
         </div>
     </section>
+}
+@section Scripts{
+    <script type="text/javascript">
+        jQuery.ajax({
+            url: '@Url.Action("GetCloudJson")',
+        type: 'post',
+        dataType: 'json',
+        cacheResults: false,
+        success: function (data) { jQuery("#tagsCloud").jQCloud(data); }
+    });
+    </script>
 }

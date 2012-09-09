@@ -1,53 +1,98 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-    </head>
-    <body>
-        <header>
-            <div class="navbar navbar-inverse well-small">
-                <div class="navbar-inner">
-                     <div class="container">
-                        <a class="brand" href="../Home/Index">SolveMe</a>
-                         <ul class="nav">
-                             <li><a href="../Home/About">About</a></li>
-                             @if(Request.IsAuthenticated)
-                                 {
-                                     <li><a href="../Account/Profile">Profile</a></li>
-                                     <li><a href="../Task/NewTask">Add a task</a></li>
-                                 }
-                         </ul>
-                        <div class="navbar-search pull-left">
-                            <input type="text" class="search-query " placeholder="Search">
-                        </div>
-                        <ul class="nav pull-right">
-                            @Html.Partial("_LoginPartial")
-                        </ul>
-                    </div>
-                </div>
-           </div>
-          
-        </header>
-        <div id="body" class ="well well-large" style="width: 900px; margin-left: auto; margin-right: auto">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
-        </div>
-        <footer>
-            <div class="bottom">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - Task publishing service. Developed by Kontrast.</p>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("StyleTextEditor", required: false)
+    <link rel="stylesheet" href="/Content/SolveMeStyles.css" />
+</head>
+<body>
+    <header>
+        <div class="navbar navbar-inverse well-small">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="~/Home/Index">SolveMe</a>
+                    <ul class="nav">
+                        @if (Request.IsAuthenticated)
+                        {
+                            <li><a href="~/Profile/Edit/">Profile</a></li>
+                            <li><a href="~/Task/Create">Add a task</a></li>
+                            <li><a href="~/Task/Statistics">Statistics</a></li>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="dropdown">
+                                <a class="dropdown-toggle"
+                                    data-toggle="dropdown"
+                                    href="#">AdminPanel
+                                          <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <a href="~/UserAdmin/Index">Users</a>
+                                    <a href="~/TaskAdmin/Index">Tasks</a>
+                                </ul>
+                            </li>
+                        }
+                        <li>
+                            @using (Html.BeginForm("Search", "Home", FormMethod.Post, new { @class = "nav-form" }))
+                            {
+                                <div class="navbar-search">
+                                    <input name="Value" type="text" id="SearchBox" class="search-query" placeholder="Search">
+                                </div>
+                            }
+                        </li>
+                    </ul>
+                    <ul class="nav pull-right">
+                        @Html.Partial("_LoginPartial")
+                    </ul>
                 </div>
             </div>
-        </footer>
+        </div>
+    </header>
+    <div id="body" class="well well-large content">
+        @RenderSection("featured", required: false)
+        <section>
+            @RenderBody()
+        </section>
+    </div>
+    <footer>
+        <div class="bottom">
+            <div class="pull-left">
+                <p>&copy; @DateTime.Now.Year - Task publishing service. Developed by Kontrast.</p>
+            </div>
+        </div>
+    </footer>
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
-    </body>
+    @RenderSection("scripts", required: false)
+    <script src="/Content/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/Scripts/textExt1.3.js" ></script>
+    <script type="text/javascript" src="/Scripts/prototype-1.6.0.2.js" ></script>
+    <script type="text/javascript" src="/Scripts/autocomplete.js"></script> 
+    
+    <script type="text/javascript">
+        new Autocomplete( 'SearchBox', { serviceUrl: '/Home/SearchFilter/'});
+    </script>
+
+    <!-- <script type="text/javascript">
+         jQuery("#SearchBox")
+            .textext({
+                plugins: 'autocomplete ajax',
+                ajax: {
+                    url: 'Url.Action("SearchFilter", "Home")',
+                    dataType: 'json',
+                    cacheResults: true,
+                    type: 'POST'
+                }
+            });
+    </script>-->
+
+    <script src="/Content/TextArea/all.js" type="text/javascript"></script>
+    <script src="/Content/TextArea/ConnectTextArea.js" type="text/javascript"></script>
+    <script src="/Content/JqCloud/JqCloud.js"></script>
+</body>
+
 </html>

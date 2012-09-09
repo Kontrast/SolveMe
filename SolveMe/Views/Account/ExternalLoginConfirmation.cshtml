@@ -21,13 +21,13 @@
         </p>
         <ol>
             <li class="name">
-                @Html.LabelFor(m => m.UserName)
+                <label>User name</label>
                 @Html.TextBoxFor(m => m.UserName)
                 @Html.ValidationMessageFor(m => m.UserName)
             </li>
         </ol>
         @Html.HiddenFor(m => m.ExternalLoginData)
-        <input type="submit" value="Register" />
+        <input type="submit" class="btn-success" value="Register" />
     </fieldset>
 }
 
