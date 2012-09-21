@@ -1,0 +1,73 @@
+﻿@model SolveMe.Models.UserProfile
+
+@{
+    ViewBag.Title = "Display";
+}
+
+<fieldset>
+    <legend>UserProfile</legend>
+    <blockquote>
+        <div class="inline">
+            @Html.DisplayNameFor(model => model.UserName)
+        </div>
+        <div class="inline">
+            :@Html.DisplayFor(model => model.UserName)
+        </div>
+    </blockquote>
+    <blockquote>
+        <div class="inline">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </div>
+        <div class="inline">
+            :@Html.DisplayFor(model => model.FirstName)
+        </div>
+    </blockquote>
+    <blockquote>
+        <div class="inline">
+            @Html.DisplayNameFor(model => model.LastName)
+        </div>
+        <div class="inline">
+           :@Html.DisplayFor(model => model.LastName)
+        </div>
+    </blockquote>
+    <blockquote>
+        <div class="inline">
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </div>
+        <div class="inline">
+            :@Html.DisplayFor(model => model.DateOfBirth)
+        </div>
+    </blockquote>
+    <blockquote>
+        <div class="inline">
+            @Html.DisplayNameFor(model => model.Gender)
+        </div>
+        <div class="inline">
+            :@Html.DisplayFor(model => model.Gender)
+        </div>
+    </blockquote>
+    <blockquote>
+        <div class="inline">
+            @Html.DisplayNameFor(model => model.Rating)
+        </div>
+        <div class="inline">
+            :@Html.DisplayFor(model => model.Rating)
+        </div>
+    </blockquote>
+    <blockquote>
+        <div class="inline">
+            @Html.DisplayNameFor(model => model.TasksCount)
+        </div>
+        <div class="inline">
+            :@Html.DisplayFor(model => model.TasksCount)
+        </div>
+    </blockquote>
+    <blockquote>
+        <div class="inline">
+            @Html.DisplayNameFor(model => model.SolutionsCount)
+        </div>
+        <div class="inline">
+            :@Html.DisplayFor(model => model.SolutionsCount)
+        </div>
+    </blockquote>
+</fieldset>

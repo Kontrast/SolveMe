@@ -1,0 +1,43 @@
+﻿@model SolveMe.Models.SearchModel
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    @foreach (var item in Model.SearchResult)
+    {
+        <blockquote>
+
+            @Html.ActionLink(item.Title, "DisplayTask", new { id = item.TaskId })
+            <span class="pull-right">
+                @if(@item.UserProfile != null)
+                {
+                    <a name="Author" href="/Profile/Display/@item.UserProfile.UserId">@item.UserProfile.UserName</a>
+                }
+                else
+                {
+                    <span class="label"><i class="icon-remove"></i>Author has been deleted</span>
+                }
+                @Html.DisplayName(item.Added.ToString())
+            </span>
+            <div class="TaskText">
+                @item.TaskText
+            </div>
+
+        </blockquote>
+    }
+</div>
+<div class="pagination">
+    <ul>
+        <li><a href="#">Prev</a></li>
+        @for (int i = 1; i < Model.SearchResult.Count / 20 + 2; i++)
+        {
+            <li><a href="#">@i</a></li>
+        }
+        <li><a href="#">Next</a></li>
+    </ul>
+</div>
+
+

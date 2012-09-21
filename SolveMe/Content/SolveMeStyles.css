@@ -1,0 +1,41 @@
+﻿body {
+}
+.Preview {
+	border: white;
+	border-style:dotted
+	}
+
+.block {
+	display: block;
+}
+
+.tag-clowd {
+	width: 930px; 
+	height: 500px;
+	border: 1px double white
+}
+
+.content {
+	width: 930px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px
+}
+
+.TaskText {
+	width: 670px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+.DisplayNone {
+	display: none
+
+}
+
+.autocomplete-w1 { position:absolute; top:4px; left:3px; /* IE6 fix: */ _background:none; _top:1px; }
+.autocomplete { width:300px; border:1px solid black ; background:#FFF; cursor:default; text-align:left; max-height:350px; overflow:auto; margin:-6px 6px 6px -6px; /* IE specific: */ _height:350px; _margin:0px 6px 6px 0; overflow-x:hidden; }
+.autocomplete .selected { background: grey; }
+.autocomplete div { padding:2px 5px; white-space:nowrap; }
+.autocomplete strong { font-weight:normal; color:#3399FF; } 

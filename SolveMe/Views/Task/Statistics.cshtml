@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Statistics";
+}
+
+<h2>Statistics</h2>
+<div id="container" style="min-width: 800px; height: 400px; margin: 0 auto"></div>
+
+    <script src="/Scripts/highcharts.js"></script>
+    <script src="/Scripts/exporting.js"></script>
+
+@section scripts
+{
+    <script type="text/javascript">
+       jQuery(function() {
+           jQuery.get(
+                "@Url.Action("GetDataDiagram")",
+                function(data) {
+                    var chart = new Highcharts.Chart({
+                        chart: {
+                            renderTo: 'container',
+                            type: 'spline'
+                        },
+                        title: {
+                            text: 'User activity diagram'
+                        },
+                        xAxis: {
+                            type: 'datetime',
+                            dateTimeLabelFormats: {
+                                month: '%e. %b',
+                                year: '%b'
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Value'
+                            },
+                            min: 0
+                        },
+                        tooltip: {
+                            formatter: function() {
+                                return '<b>' + this.series.name + '</b><br/>' +
+                                    Highcharts.dateFormat('%e. %b', this.x) + ': Value = ' + this.y;
+                            }
+                        },
+                        series: JSON.parse(data)
+                    });
+                }
+            );
+        });
+    </script>
+}

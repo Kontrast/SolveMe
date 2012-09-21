@@ -1,0 +1,87 @@
+﻿@model SolveMe.Models.Task
+
+@{
+    ViewBag.Title = "DisplayTask";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<fieldset>
+    <legend>Task</legend>
+    <div class="container">
+        <p>
+            <text name="Title">@Model.Title</text>
+            <span class="pull-right">
+                @if (Model.UserProfile != null)
+                {
+                    <a name="Author" href="/Profile/Display/@Model.UserProfile.UserId">@Model.UserProfile.UserName</a>
+                }
+                else
+                {
+                    <span class="label"><i class="icon-remove"></i>Author has been deleted</span>
+                }
+                <text name="Added">@Model.Added</text>
+            </span>
+        </p>
+    </div>
+    <div style="display: none" class="pull-left">
+        <textarea id="markdown_example" name="TaskText">@Model.TaskText</textarea>
+    </div>
+    <div id="markdown_formatted" class="Preview">
+    </div>
+    @if (User.Identity.IsAuthenticated)
+    { 
+        <p>
+            <div id="AnswerWraper">
+                <label>Input your answer</label>
+                <input type="text" id="Answer" />
+            </div>
+            <button class="btn-success" id="Send">Answer</button>
+        </p>
+    }
+    else
+    {
+        <p>If you want to solve tasks, you need to log in!</p>
+    }
+
+</fieldset>
+
+@{
+    if (Model.UserProfile != null)
+    {
+        ViewBag.Author = Model.UserProfile.UserId;
+    }
+    else
+    {
+        ViewBag.Author = null;
+    }
+}
+
+@section TaskDisplayScripts
+{
+    <script type="text/javascript">
+        jQuery(function () {
+            jQuery("#Send").click(function () {
+                jQuery.ajax({
+                    url: '@Url.Action("CheckAnswer")',
+                    dataType: 'json',
+                    type: 'post',
+                    data: { "answer": jQuery("#Answer").val(), "TaskId": '@Model.TaskId', "UserId": '@ViewBag.Author' },
+                    success: function (data) {
+                        if (data["Success"] == true) {
+                            jQuery("#AnswerWraper").append("<div class=\"alert alert-success\"" +
+                                ">" + data["Message"] + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button></div>");
+                        } else {
+                            jQuery("#AnswerWraper").append("<div class=\"alert alert-error\"" +
+                                ">" + data["Message"] + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button></div>");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="/Content/TextArea/all.js" type="text/javascript"></script>
+}
+
+@section StyleTextEditor {
+    <link rel="stylesheet" href="/Content/TextArea/TextStyle.css" media="screen">
+}

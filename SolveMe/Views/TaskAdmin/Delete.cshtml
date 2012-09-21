@@ -1,0 +1,67 @@
+﻿@model SolveMe.Models.Task
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Task</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TaskText)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TaskText)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserProfile.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserProfile.UserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Added)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Added)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FirstSolve)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstSolve)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SolutionsCount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SolutionsCount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Attempts)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Attempts)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
