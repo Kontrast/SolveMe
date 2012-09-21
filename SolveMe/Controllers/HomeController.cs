@@ -9,6 +9,9 @@ using WebMatrix.WebData;
 
 namespace SolveMe.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [InitializeSimpleMembership]
     public class HomeController : Controller
     {
@@ -53,7 +56,7 @@ namespace SolveMe.Controllers
 
         public ActionResult SearchByTag(string id)
         {
-            return View("Search", data.GetSearhByagModel(id));
+            return View("Search", data.GetSearhByTagModel(id));
         }
 
         public string GetCloudJson()
@@ -68,6 +71,23 @@ namespace SolveMe.Controllers
             }).ToList();
             return JsonConvert.SerializeObject(tagsForCloud, Formatting.Indented,
                                           new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+        }
+
+        [AllowAnonymous]
+        public ActionResult SwitchTheme()
+        {
+            if (HttpContext.Session != null)
+            {
+                if (HttpContext.Session["darkTheme"] == null)
+                {
+                    HttpContext.Session["darkTheme"] = true;
+                }
+                else
+                {
+                    HttpContext.Session.Remove("darkTheme");
+                }
+            }
+            return RedirectToAction("Index");
         }
 
         [Authorize]

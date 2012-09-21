@@ -8,7 +8,15 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("StyleTextEditor", required: false)
-    <link rel="stylesheet" href="/Content/SolveMeStyles.css" />
+    @if (HttpContext.Current.Session != null && HttpContext.Current.Session["darkTheme"] != null)
+    {   
+        <link href="@Url.Content("/Content/bootstrap/css/United.css")" rel="stylesheet" type="text/css" />
+    }
+    else
+    {
+        <link href="@Url.Content("/Content/bootstrap/css/bootstrap.css")" rel="stylesheet" type="text/css" />
+    }
+    <link rel="stylesheet" href="/Content/SolveMeStyles.css"/>
 </head>
 <body>
     <header>
@@ -29,7 +37,7 @@
                                 <a class="dropdown-toggle"
                                     data-toggle="dropdown"
                                     href="#">AdminPanel
-                                          <b class="caret"></b>
+                                    <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <a href="~/UserAdmin/Index">Users</a>
@@ -37,6 +45,7 @@
                                 </ul>
                             </li>
                         }
+
                         <li>
                             @using (Html.BeginForm("Search", "Home", FormMethod.Post, new { @class = "nav-form" }))
                             {
@@ -46,8 +55,13 @@
                             }
                         </li>
                     </ul>
+
                     <ul class="nav pull-right">
+
                         @Html.Partial("_LoginPartial")
+                        <li>
+                            <a href="/Home/SwitchTheme" class ="DisplayNone"><i class="icon-eye-open pull-right"></i></a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -68,29 +82,14 @@
     </footer>
 
     @RenderSection("scripts", required: false)
+    @RenderSection("TaskDisplayScripts", required: false)
     <script src="/Content/bootstrap/js/bootstrap.js" type="text/javascript"></script>
-    <script type="text/javascript" src="/Scripts/textExt1.3.js" ></script>
-    <script type="text/javascript" src="/Scripts/prototype-1.6.0.2.js" ></script>
-    <script type="text/javascript" src="/Scripts/autocomplete.js"></script> 
-    
+    <script type="text/javascript" src="/Scripts/textExt1.3.js"></script>
+    <script type="text/javascript" src="/Scripts/prototype-1.6.0.2.js"></script>
+    <script type="text/javascript" src="/Scripts/autocomplete.js"></script>
     <script type="text/javascript">
-        new Autocomplete( 'SearchBox', { serviceUrl: '/Home/SearchFilter/'});
+        new Autocomplete('SearchBox', { serviceUrl: '/Home/SearchFilter/' });
     </script>
-
-    <!-- <script type="text/javascript">
-         jQuery("#SearchBox")
-            .textext({
-                plugins: 'autocomplete ajax',
-                ajax: {
-                    url: 'Url.Action("SearchFilter", "Home")',
-                    dataType: 'json',
-                    cacheResults: true,
-                    type: 'POST'
-                }
-            });
-    </script>-->
-
-    <script src="/Content/TextArea/all.js" type="text/javascript"></script>
     <script src="/Content/TextArea/ConnectTextArea.js" type="text/javascript"></script>
     <script src="/Content/JqCloud/JqCloud.js"></script>
 </body>

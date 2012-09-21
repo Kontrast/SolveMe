@@ -1,22 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Mail;
-using System.Web;
 
 namespace SolveMe.Models
 {
+    /// <summary>
+    /// Help to send the email
+    /// </summary>
     public class EmailSender
     {
         private string messageBody;
         private string emailTo;
+        /// <summary>
+        /// Constructor for EmailSender
+        /// </summary>
+        /// <param name="messageBody">Body of the message</param>
+        /// <param name="emailTo">Receiver of the message</param>
         public EmailSender(string messageBody, string emailTo)
         {
             this.messageBody = messageBody;
             this.emailTo = emailTo;
         }
-
+        /// <summary>
+        /// Send the message to receiver
+        /// </summary>
         public void Send()
         {
             SmtpClient client = new SmtpClient();

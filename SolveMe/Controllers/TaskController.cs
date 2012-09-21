@@ -91,25 +91,21 @@ namespace SolveMe.Controllers
         [Authorize]
         public string GetDataDiagram()
         {
-            int userId = WebSecurity.GetUserId(User.Identity.Name);
-            DateTime[] createTasks = data.GetTaskCrearedDates(userId);
-
-            DiagramModel diagram = new DiagramModel();
-            diagram.name = "Users task activity";
-            // buf[i][0] - x
-            // buf[i][1] - y
-            int length = createTasks.Count();
-            long[][] buf = new long[length][];
-            for (int i = 0; i < length; i++)
+            List<DateTime> createdTasks = data.GetTaskCrearedDates(WebSecurity.GetUserId(User.Identity.Name));
+            DiagramModel diagram = new DiagramModel
             {
-                buf[i] = new long[2];
-                TimeSpan elapsedSpan = new TimeSpan(createTasks[i].ToLocalTime().ToUniversalTime().Ticks);
-                buf[i][0] = (long)elapsedSpan.TotalMilliseconds;
-                buf[i][1] = i + 1;
+                name = "Users task activity",
+                data = new List<List<object>>()
+            };
+            int coordinateX = 0;
+            foreach (var createdTask in createdTasks)
+            {
+                List<object> temp = new List<object>();
+                temp.Add(new TimeSpan(createdTask.ToLocalTime().ToUniversalTime().Ticks).TotalMilliseconds);
+                temp.Add(coordinateX++);
+                diagram.data.Add(temp);
             }
-            diagram.data = buf;
-
-            return JsonConvert.SerializeObject(new Object[] { diagram });// need return array of diagrams
+            return JsonConvert.SerializeObject(new List<object> { diagram });
         }
     }
 }

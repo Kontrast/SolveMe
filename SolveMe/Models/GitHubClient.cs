@@ -8,6 +8,9 @@ using System.Web.Helpers;
 
 namespace SolveMe.Models
 {
+    /// <summary>
+    /// Provide a client to autentificate throw the Github
+    /// </summary>
     public class GitHubClient : OAuth2Client
     {
         private const string AuthorizationEndpoint = "https://github.com/login/oauth/authorize";
@@ -15,7 +18,7 @@ namespace SolveMe.Models
         private readonly string _clientId;
         private readonly string _clientSecret;
         private Guid redirectState;
-
+        
         public GitHubClient(string clientId, string clientSecret) : base("github")
         { 
             this._clientId = clientId;

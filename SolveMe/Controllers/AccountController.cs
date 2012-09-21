@@ -13,13 +13,18 @@ using SolveMe.Models;
 
 namespace SolveMe.Controllers
 {
+    /// <summary>
+    /// Let user get the progect account, login and log out
+    /// </summary>
     [Authorize]
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
-        //
-        // GET: /Account/Login
-
+        /// <summary>
+        /// Get login page
+        /// </summary>
+        /// <param name="returnUrl">Return url</param>
+        /// <returns></returns>
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -27,9 +32,12 @@ namespace SolveMe.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Login
-
+        /// <summary>
+        /// Let user to log in
+        /// </summary>
+        /// <param name="model">Log in model</param>
+        /// <param name="returnUrl">Return url</param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -44,10 +52,10 @@ namespace SolveMe.Controllers
             ModelState.AddModelError("", "The user name or password provided is incorrect.");
             return View(model);
         }
-
-        //
-        // POST: /Account/LogOff
-
+        /// <summary>
+        /// Let user to log off
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -56,19 +64,20 @@ namespace SolveMe.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-
-        //
-        // GET: /Account/Register
-
+        /// <summary>
+        /// Get the register page
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
-
-        //
-        // POST: /Account/Register
-
+        /// <summary>
+        /// Let user to register using mail
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -76,7 +85,6 @@ namespace SolveMe.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
                 try
                 {
                     string confirmationToken =  WebSecurity.CreateUserAndAccount(model.UserName, model.Password, null, true);
@@ -91,13 +99,15 @@ namespace SolveMe.Controllers
                     ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
                 }
             }
-
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
-        //GET: /Account/Activate
-
+        /// <summary>
+        /// Let user activate account
+        /// </summary>
+        /// <param name="userName">Name of user</param>
+        /// <param name="confirmationToken">Con firmation token</param>
+        /// <returns></returns>
         [AllowAnonymous]
         public ActionResult Activate(string userName, string confirmationToken)
         {
